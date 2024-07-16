@@ -1,0 +1,25 @@
+#include <vector>
+
+class Solution {
+public:
+    void sortColors(std::vector<int>& nums) {
+        int red = 0; // Pointer for the red section
+        int blue = nums.size() - 1; // Pointer for the blue section
+        int i = 0; // Current pointer
+        
+        while (i <= blue) {
+            if (nums[i] == 0) {
+                std::swap(nums[i], nums[red]); // Swap red element with current element
+                red++; // Move red pointer to the right
+                i++; // Move current pointer to the right
+            } else if (nums[i] == 2) {
+                std::swap(nums[i], nums[blue]); // Swap blue element with current element
+                blue--; // Move blue pointer to the left
+                // Don't increment i here to re-check the swapped element
+            } else {
+                // For white elements, just move the current pointer to the right
+                i++;
+            }
+        }
+    }
+};
